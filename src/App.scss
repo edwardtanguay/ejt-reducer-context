@@ -1,6 +1,16 @@
 body {
-  background-color: #333;
-  color: #eee;
-  font-family: sans-serif;
-  padding: 1rem;
+	background-color: #333;
+	color: #eee;
+	font-family: sans-serif;
+	padding: 1rem;
+	font-size: 1.5rem;
+
+	.buttonArea {
+		margin-top: 1rem;
+		button {
+			font-size: 2rem;
+			margin-right: .5rem;
+			width: 50px;
+		}
+	}
 }
