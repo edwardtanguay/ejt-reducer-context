@@ -3,21 +3,21 @@ import { useContext } from 'react';
 import { AppContext } from './AppContext';
 
 function App() {
-	const { count, setCount } = useContext(AppContext);
+	const { state, dispatch } = useContext(AppContext);
 	return (
 		<div className="App">
 			<h1>useContext / useReducer Site</h1>
-			<div>count = {count}</div>
+			<div>count = {state.count}</div>
 			<div className="buttonArea">
 				<button
 					className="decrease"
-					onClick={() => setCount(count - 1)}
+					onClick={() => dispatch('decreaseCount')}
 				>
 					-
 				</button>
 				<button
 					className="increase"
-					onClick={() => setCount(count + 1)}
+					onClick={() => dispatch('increaseCount')}
 				>
 					+
 				</button>
