@@ -11,16 +11,24 @@ function App() {
 			<div className="buttonArea">
 				<button
 					className="decrease"
-					onClick={() => dispatch('decreaseCount')}
+					onClick={() => dispatch({ type: 'decreaseCount' })}
 				>
 					-
 				</button>
 				<button
 					className="increase"
-					onClick={() => dispatch('increaseCount')}
+					onClick={() => dispatch({ type: 'increaseCount' })}
 				>
 					+
 				</button>
+			</div>
+
+			<div className="germanNounArea">
+				{state.germanNouns.map((gn, i) => {
+					return (
+						<div className="germanNoun" key={i}>{gn.singular}</div>
+					)
+				})}
 			</div>
 		</div>
 	);
