@@ -36,10 +36,46 @@ body {
 	}
 
 	.germanNounArea {
-		.germanNoun {
+
+		fieldset.germanNoun {
 			background-color: #444;
 			margin-bottom: 1rem;
 			padding: 1rem;
+			border: 1px solid #666;
+			color: rgb(226, 226, 144);
+			max-width: 38rem;
+
+			legend {
+				font-size: 1rem;
+				color: #aaa;
+				font-family: monospace;
+			}
+
+			.row {
+				display: flex;
+				align-content: start;
+				padding: 5px;
+
+				label {
+					&:after {
+						content: ":";
+					}
+
+					width: 115px;
+					margin: 0 0 10px 0;
+					font-size: 1.3rem;
+				}
+
+				.value {
+					color: #fff;
+					font-size: 1.3rem;
+				}
+
+				input {
+					font-size: 1.3rem;
+					width: 300px;
+				}
+			}
 		}
 	}
 }
