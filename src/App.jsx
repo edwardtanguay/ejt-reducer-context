@@ -7,8 +7,9 @@ function App() {
 	return (
 		<div className="App">
 			<h1>useContext / useReducer Site</h1>
-			<div>count = {state.count}</div>
-			<div className="buttonArea">
+
+			<h2>Count</h2>
+			<div className="countArea">
 				<button
 					className="decrease"
 					onClick={() => dispatch({ type: 'decreaseCount' })}
@@ -21,13 +22,17 @@ function App() {
 				>
 					+
 				</button>
+				<div className="count">{state.count}</div>
 			</div>
 
+			<h2>Items from API</h2>
 			<div className="germanNounArea">
 				{state.germanNouns.map((gn, i) => {
 					return (
-						<div className="germanNoun" key={i}>{gn.singular}</div>
-					)
+						<div className="germanNoun" key={i}>
+							{gn.singular}
+						</div>
+					);
 				})}
 			</div>
 		</div>
