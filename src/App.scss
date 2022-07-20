@@ -54,14 +54,13 @@ body {
 			.row {
 				display: flex;
 				align-content: start;
-				padding: 5px;
 
 				label {
 					&:after {
 						content: ":";
 					}
 
-					width: 115px;
+					width: 6rem;
 					margin: 0 0 10px 0;
 					font-size: 1.3rem;
 				}
@@ -69,6 +68,7 @@ body {
 				.value {
 					color: #fff;
 					font-size: 1.3rem;
+					font-family: monospace;
 				}
 
 				input {

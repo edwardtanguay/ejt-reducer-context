@@ -31,10 +31,22 @@ function App() {
 					return (
 						<fieldset className="germanNoun" key={i}>
 							<legend>ID: {gn.id}</legend>
+
+							<div className="row">
+								<label htmlFor="article">Article</label>
+								<div className="value">{gn.article}</div>
+							</div>
+
 							<div className="row">
 								<label htmlFor="singular">Singular</label>
 								<div className="value">{gn.singular}</div>
 							</div>
+
+							<div className="row">
+								<label htmlFor="plural">Plural</label>
+								<div className="value">{gn.plural}</div>
+							</div>
+
 						</fieldset>
 					);
 				})}
