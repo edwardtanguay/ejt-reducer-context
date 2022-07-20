@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import { useReducer } from 'react';
 import axios from 'axios';
-
+import { useThunkReducer } from 'react-hook-thunk-reducer';
 
 export const AppContext = createContext();
 
@@ -24,7 +24,7 @@ function reducer(state, action) {
 	let id = 0;
 	let value = '';
 	let item = {};
-	let saveItem = {};
+	let message = '';
 
 	let _state = { ...state };
 	switch (action.type) {
@@ -49,46 +49,54 @@ function reducer(state, action) {
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
 			item.isEditing = !item.isEditing;
-			item.manageMessage = 'Edit this item.'
+			item.message = 'Edit this item.';
 			break;
 		case 'clearItemEditing':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
-			item.isEditing = false; 
+			item.isEditing = false;
 			item.article = item.originalItem.article;
 			item.singular = item.originalItem.singular;
 			item.plural = item.originalItem.plural;
-			item.manageMessage = 'Manage options:';
+			item.message = 'Manage options:';
 			break;
 		case 'saveItemEditing':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
 			saveItem = { article, singular, plural } = item;
-			// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
 			item.isEditing = false;
-			item.manageMessage = 'Manage options:';
+			item.message = 'Manage options:';
 			break;
 		case 'toggleItemDeleting':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
 			item.isDeleting = !item.isDeleting;
-			item.manageMessage = 'Are you sure you want to delete this item?'
+			item.message = 'Are you sure you want to delete this item?';
 			break;
 		case 'clearItemDeleting':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
 			item.isDeleting = false;
-			item.manageMessage = 'Manage options:';
+			item.message = 'Manage options:';
 			break;
 		case 'deleteItem':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			_state[itemType] = _state[itemType].filter((m) => m.id !== id);
-			state.germanNouns.pop(); 
+			state.germanNouns.pop();
+			break;
+		case 'displayItemMessage':
+			itemType = action.payload.itemType;
+			id = action.payload.id;
+			item = _state[itemType].find((m) => m.id === id);
+			message = action.payload.message;
+			item.message = message;
+			item.isDeleting = false;
+			item.isEditing = false;
 			break;
 	}
 	return _state;
@@ -105,18 +113,51 @@ export const AppProvider = ({ children }) => {
 			_germanNouns.forEach((m) => {
 				m.isEditing = false;
 				m.isDeleting = false;
-				m.manageMessage = 'Manage options:';
-				m.originalItem = { ...m }
+				m.message = 'Manage options:';
+				m.originalItem = { ...m };
 			});
 			dispatch({ type: 'loadGermanNouns', payload: _germanNouns });
 		})();
 	}, []);
+
+	const apiDeleteItem = async (action) => {
+		// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
+		const itemType = action.payload.itemType;
+		const id = action.payload.id;
+		try {
+			const response = await axios.delete(
+				`${api_base_url}/${itemType}/${id}`
+			);
+			if (response.status === 300) {
+				dispatch(action);
+			} else {
+				dispatch({
+					type: 'displayItemMessage',
+					payload: {
+						itemType,
+						id,
+						message: 'sorry, API had an error',
+					},
+				});
+			}
+		} catch (e) {
+				dispatch({
+					type: 'displayItemMessage',
+					payload: {
+						itemType,
+						id,
+						message: 'API IS NOT AVAILABLE, try again',
+					},
+				});
+		}
+	};
 
 	return (
 		<AppContext.Provider
 			value={{
 				state,
 				dispatch,
+				apiDeleteItem,
 			}}
 		>
 			{children}

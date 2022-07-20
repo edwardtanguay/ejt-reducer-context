@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from './AppContext';
 
 function App() {
-	const { state, dispatch } = useContext(AppContext);
+	const { state, dispatch, apiDeleteItem } = useContext(AppContext);
 
 	const handleButtonAdd = () => {
 		window.scrollTo({
@@ -109,8 +109,8 @@ function App() {
 								)}
 							</div>
 							<div className="buttonRow">
-								<div className="manageMessage">
-									{item.manageMessage}
+								<div className="message">
+									{item.message}
 								</div>
 								<div className="buttonArea">
 									{!item.isEditing && !item.isDeleting && (
@@ -161,7 +161,9 @@ function App() {
 														},
 													})
 												}
-											>Clear</button>
+											>
+												Clear
+											</button>
 											<button
 												onClick={(e) =>
 													dispatch({
@@ -172,8 +174,9 @@ function App() {
 															id: item.id,
 														},
 													})
-												}>
-											Save	
+												}
+											>
+												Save
 											</button>
 										</>
 									)}
@@ -181,7 +184,7 @@ function App() {
 										<>
 											<button
 												onClick={(e) =>
-													dispatch({
+													apiDeleteItem({
 														type: 'deleteItem',
 														payload: {
 															itemType:
@@ -190,9 +193,10 @@ function App() {
 														},
 													})
 												}
-											>Yes, delete it.</button>
+											>
+												Yes, delete it.
+											</button>
 											<button
-												
 												onClick={(e) =>
 													dispatch({
 														type: 'clearItemDeleting',
@@ -202,8 +206,9 @@ function App() {
 															id: item.id,
 														},
 													})
-												}>
-											No, do not delete it.	
+												}
+											>
+												No, do not delete it.
 											</button>
 										</>
 									)}
