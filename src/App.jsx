@@ -182,7 +182,7 @@ function App() {
 											<button
 												onClick={(e) =>
 													dispatch({
-														type: 'clearItemEditing',
+														type: 'deleteItem',
 														payload: {
 															itemType:
 																'germanNouns',

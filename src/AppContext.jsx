@@ -3,6 +3,7 @@ import { createContext } from 'react';
 import { useReducer } from 'react';
 import axios from 'axios';
 
+
 export const AppContext = createContext();
 
 const api_base_url = 'http://localhost:4555';
@@ -25,67 +26,72 @@ function reducer(state, action) {
 	let item = {};
 	let saveItem = {};
 
-	let obj = { ...state };
+	let _state = { ...state };
 	switch (action.type) {
 		case 'increaseCount':
-			obj.count++;
+			_state.count++;
 			break;
 		case 'decreaseCount':
-			obj.count--;
+			_state.count--;
 			break;
 		case 'loadGermanNouns':
-			obj.germanNouns = action.payload;
+			_state.germanNouns = action.payload;
 			break;
 		case 'changeItemProperty':
 			itemType = action.payload.itemType;
 			property = action.payload.property;
 			id = action.payload.id;
 			value = action.payload.value;
-			state[itemType].find((m) => m.id === id)[property] = value;
+			_state[itemType].find((m) => m.id === id)[property] = value;
 			break;
 		case 'toggleItemEditing':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
-			item = state[itemType].find((m) => m.id === id);
+			item = _state[itemType].find((m) => m.id === id);
 			item.isEditing = !item.isEditing;
 			item.manageMessage = 'Edit this item.'
 			break;
 		case 'clearItemEditing':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
-			item = state[itemType].find((m) => m.id === id);
+			item = _state[itemType].find((m) => m.id === id);
 			item.isEditing = false; 
 			item.article = item.originalItem.article;
 			item.singular = item.originalItem.singular;
 			item.plural = item.originalItem.plural;
 			item.manageMessage = 'Manage options:';
 			break;
+		case 'saveItemEditing':
+			itemType = action.payload.itemType;
+			id = action.payload.id;
+			item = _state[itemType].find((m) => m.id === id);
+			saveItem = { article, singular, plural } = item;
+			// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
+			item.isEditing = false;
+			item.manageMessage = 'Manage options:';
+			break;
 		case 'toggleItemDeleting':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
-			item = state[itemType].find((m) => m.id === id);
+			item = _state[itemType].find((m) => m.id === id);
 			item.isDeleting = !item.isDeleting;
 			item.manageMessage = 'Are you sure you want to delete this item?'
 			break;
 		case 'clearItemDeleting':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
-			item = state[itemType].find((m) => m.id === id);
+			item = _state[itemType].find((m) => m.id === id);
 			item.isDeleting = false;
 			item.manageMessage = 'Manage options:';
 			break;
-		case 'saveItemEditing':
+		case 'deleteItem':
 			itemType = action.payload.itemType;
 			id = action.payload.id;
-			item = state[itemType].find((m) => m.id === id);
-			saveItem = { article, singular, plural } = item;
-			// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
-			item.isEditing = false;
-			item.manageMessage = 'Manage options:';
-
+			_state[itemType] = _state[itemType].filter((m) => m.id !== id);
+			state.germanNouns.pop(); 
 			break;
 	}
-	return obj;
+	return _state;
 }
 
 export const AppProvider = ({ children }) => {
