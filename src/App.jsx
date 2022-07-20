@@ -26,6 +26,7 @@ function App() {
 			</div>
 
 			<h2>Items from API</h2>
+
 			<div className="germanNounArea">
 				{state.germanNouns.map((gn, i) => {
 					return (
@@ -46,7 +47,11 @@ function App() {
 								<label htmlFor="plural">Plural</label>
 								<div className="value">{gn.plural}</div>
 							</div>
-
+							<div className="buttonRow">
+								<button>Edit</button>
+								<button>Delete</button>
+								<button>Add</button>
+							</div>
 						</fieldset>
 					);
 				})}
