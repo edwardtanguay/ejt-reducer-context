@@ -4,6 +4,13 @@ import { AppContext } from './AppContext';
 
 function App() {
 	const { state, dispatch } = useContext(AppContext);
+
+	const handleButtonAdd = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	};
 	return (
 		<div className="App">
 			<h1>useContext / useReducer Site</h1>
@@ -50,7 +57,7 @@ function App() {
 							<div className="buttonRow">
 								<button>Edit</button>
 								<button>Delete</button>
-								<button>Add</button>
+								<button onClick={handleButtonAdd}>Add</button>
 							</div>
 						</fieldset>
 					);

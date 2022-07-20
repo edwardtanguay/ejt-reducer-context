@@ -17,6 +17,66 @@
       "article": "der",
       "singular": "Workshop",
       "plural": "die Workshops"
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 4
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 5
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 6
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 7
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 8
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 9
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 10
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 11
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 12
+    },
+    {
+      "article": "nnn",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 13
     }
   ]
 }
