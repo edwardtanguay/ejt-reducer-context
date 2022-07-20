@@ -72,8 +72,9 @@ body {
 				}
 
 				input {
-					font-size: 1.3rem;
+					font-size: .9rem;
 					width: 300px;
+					margin-bottom: .5rem;
 				}
 			}
 
@@ -81,8 +82,21 @@ body {
 				text-align: right;
 				background-color: #4a4a4a;
 				padding: .3rem .3rem .7rem .3rem;
-				button {
-					margin-right: .3rem;
+				display: flex;
+				justify-content: space-between;
+
+				.manageMessage {
+					color: #aaa;
+					margin-left: .5rem;
+					margin-top: .2rem;
+					margin-right: 1rem;
+					text-align: left;
+					font-size: 1.3rem;
+				}
+				.buttonArea {
+					button {
+						margin-right: .3rem;
+					}
 				}
 			}
 		}
