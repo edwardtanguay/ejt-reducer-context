@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from './AppContext';
 
 function App() {
-	const { state, dispatch, apiDeleteItem } = useContext(AppContext);
+	const { state, dispatch, actionManager } = useContext(AppContext);
 
 	const handleButtonAdd = () => {
 		window.scrollTo({
@@ -184,7 +184,7 @@ function App() {
 										<>
 											<button
 												onClick={(e) =>
-													apiDeleteItem({
+													actionManager({
 														type: 'deleteItem',
 														payload: {
 															itemType:

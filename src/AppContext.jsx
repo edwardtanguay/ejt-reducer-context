@@ -120,15 +120,20 @@ export const AppProvider = ({ children }) => {
 		})();
 	}, []);
 
-	const apiDeleteItem = async (action) => {
+	const actionManager = async (action) => {
 		// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
 		const itemType = action.payload.itemType;
 		const id = action.payload.id;
+		let response = {};
 		try {
-			const response = await axios.delete(
-				`${api_base_url}/${itemType}/${id}`
-			);
-			if (response.status === 300) {
+			switch (action.type) {
+				case 'deleteItem':
+					response = await axios.delete(
+						`${api_base_url}/${itemType}/${id}`
+					);
+					break;
+			}
+			if (response.status === 200) {
 				dispatch(action);
 			} else {
 				dispatch({
@@ -141,14 +146,15 @@ export const AppProvider = ({ children }) => {
 				});
 			}
 		} catch (e) {
-				dispatch({
-					type: 'displayItemMessage',
-					payload: {
-						itemType,
-						id,
-						message: 'API IS NOT AVAILABLE, try again',
-					},
-				});
+			console.log(e);
+			dispatch({
+				type: 'displayItemMessage',
+				payload: {
+					itemType,
+					id,
+					message: 'API IS NOT AVAILABLE, try again',
+				},
+			});
 		}
 	};
 
@@ -157,7 +163,7 @@ export const AppProvider = ({ children }) => {
 			value={{
 				state,
 				dispatch,
-				apiDeleteItem,
+				actionManager,
 			}}
 		>
 			{children}
