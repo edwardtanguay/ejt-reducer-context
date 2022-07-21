@@ -5,9 +5,9 @@ export const AddItemBox = () => {
 	const { state, dispatch, actionManager } = useContext(AppContext);
 
 	const item = {
-		article: '',
-		singular: '',
-		plural: '',
+		article: state.addItem.article,
+		singular: state.addItem.singular,
+		plural: state.addItem.plural,
 	};
 
 	return (
@@ -23,7 +23,7 @@ export const AddItemBox = () => {
 							value={item.article}
 							onChange={(e) =>
 								dispatch({
-									type: 'changeItemProperty',
+									type: 'changeAddItemProperty',
 									payload: {
 										itemType: 'germanNouns',
 										property: 'article',
@@ -42,7 +42,7 @@ export const AddItemBox = () => {
 							value={item.singular}
 							onChange={(e) =>
 								dispatch({
-									type: 'changeItemProperty',
+									type: 'changeAddItemProperty',
 									payload: {
 										itemType: 'germanNouns',
 										property: 'singular',
@@ -61,7 +61,7 @@ export const AddItemBox = () => {
 							value={item.plural}
 							onChange={(e) =>
 								dispatch({
-									type: 'changeItemProperty',
+									type: 'changeAddItemProperty',
 									payload: {
 										itemType: 'germanNouns',
 										property: 'plural',

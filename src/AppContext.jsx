@@ -10,13 +10,13 @@ const api_base_url = 'http://localhost:4555';
 const initialState = {
 	count: 0,
 	germanNouns: [],
-	germanNounForm: {
+	addItem: {
 		article: 'aa',
-		singular: 'ss',
-		plural: 'pp',
+		singular: 'ssj',
+		plural: 'app',
 	},
 	isAdding: false,
-	addMessage: ''
+	addMessage: '',
 };
 
 function reducer(state, action) {
@@ -98,13 +98,30 @@ function reducer(state, action) {
 			item.isDeleting = false;
 			item.isEditing = false;
 			break;
+		//add
 		case 'beginAddingItem':
 			_state.isAdding = true;
-			_state.addMessage = 'Click Save to add the item:'
+			_state.addMessage = 'Click Save to add the item:';
 			break;
+
+		//add
 		case 'clearAddingItem':
 			_state.isAdding = false;
-			_state.addMessage = ''
+			_state.addMessage = '';
+			_state.addItem = {
+				article: '',
+				singular: '',
+				plural: '',
+			};
+			break;
+
+		//add
+		case 'changeAddItemProperty':
+			itemType = action.payload.itemType;
+			property = action.payload.property;
+			id = action.payload.id;
+			value = action.payload.value;
+			_state.addItem[property] = value;
 			break;
 	}
 	return _state;
@@ -141,7 +158,8 @@ export const AppProvider = ({ children }) => {
 				break;
 			case 'saveItemEditing':
 				response = await axios.patch(
-					`${api_base_url}/${itemType}/${id}`,item
+					`${api_base_url}/${itemType}/${id}`,
+					item
 				);
 				break;
 		}
