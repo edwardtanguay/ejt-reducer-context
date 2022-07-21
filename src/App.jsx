@@ -10,6 +10,7 @@ function App() {
 			top: 0,
 			behavior: 'smooth',
 		});
+		dispatch({type: 'beginAddingItem'})
 	};
 	return (
 		<div className="App">
@@ -35,6 +36,9 @@ function App() {
 					</div>
 
 					<h2>Items from API</h2>
+					{state.isAdding === true && (
+						<div className="addItem">this will add an item</div>
+					)}
 
 					<div className="germanNounArea">
 						{state.germanNouns.map((item, i) => {
@@ -199,7 +203,7 @@ function App() {
 																			item.article,
 																		singular:
 																			item.singular,
-																		plural: item.plural
+																		plural: item.plural,
 																	},
 																},
 															})

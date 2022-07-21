@@ -8,7 +8,7 @@ POST {{url}}/germanNouns
 content-type: application/json
 
 {
-	"article": "nnn",
+	"article": "nnn222111444",
 	"singular": "nnn",
 	"plural": "nnn"
 }

@@ -31,9 +31,9 @@
       "id": 5
     },
     {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
+      "article": "nnn1",
+      "singular": "nnn2",
+      "plural": "nnn3",
       "id": 8
     },
     {
@@ -49,24 +49,6 @@
       "id": 10
     },
     {
-      "article": "nnn2222",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 11,
-      "isEditing": true,
-      "isDeleting": false,
-      "message": "Edit this item.",
-      "originalItem": {
-        "article": "nnn",
-        "singular": "nnn",
-        "plural": "nnn",
-        "id": 11,
-        "isEditing": false,
-        "isDeleting": false,
-        "message": "Manage options:"
-      }
-    },
-    {
       "article": "nnn",
       "singular": "nnn",
       "plural": "nnn",
@@ -77,6 +59,12 @@
       "singular": "nnn",
       "plural": "nnn",
       "id": 13
+    },
+    {
+      "article": "nnn222111444",
+      "singular": "nnn",
+      "plural": "nnn",
+      "id": 14
     }
   ]
 }

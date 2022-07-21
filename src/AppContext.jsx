@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import { useReducer } from 'react';
 import axios from 'axios';
-import { useThunkReducer } from 'react-hook-thunk-reducer';
 
 export const AppContext = createContext();
 
@@ -16,6 +15,7 @@ const initialState = {
 		singular: 'ss',
 		plural: 'pp',
 	},
+	isAdding: false
 };
 
 function reducer(state, action) {
@@ -97,6 +97,11 @@ function reducer(state, action) {
 			item.isDeleting = false;
 			item.isEditing = false;
 			break;
+
+		case 'beginAddingItem':
+			_state.isAdding = true;
+			console.log('begin');
+			break;
 	}
 	return _state;
 }
@@ -120,7 +125,6 @@ export const AppProvider = ({ children }) => {
 	}, []);
 
 	const actionManager = async (action) => {
-		// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
 		const itemType = action.payload.itemType;
 		const id = action.payload.id;
 		const item = action.payload.item;
@@ -132,7 +136,7 @@ export const AppProvider = ({ children }) => {
 				);
 				break;
 			case 'saveItemEditing':
-				response = await axios.put(
+				response = await axios.patch(
 					`${api_base_url}/${itemType}/${id}`,item
 				);
 				break;
