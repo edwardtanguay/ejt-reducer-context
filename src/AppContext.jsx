@@ -65,7 +65,6 @@ function reducer(state, action) {
 			itemType = action.payload.itemType;
 			id = action.payload.id;
 			item = _state[itemType].find((m) => m.id === id);
-			saveItem = { article, singular, plural } = item;
 			item.isEditing = false;
 			item.message = 'Manage options:';
 			break;
@@ -124,35 +123,29 @@ export const AppProvider = ({ children }) => {
 		// const response = axios.put(`${api_base_url}/${itemType}/${id}`, saveItem);
 		const itemType = action.payload.itemType;
 		const id = action.payload.id;
+		const item = action.payload.item;
 		let response = {};
-		try {
-			switch (action.type) {
-				case 'deleteItem':
-					response = await axios.delete(
-						`${api_base_url}/${itemType}/${id}`
-					);
-					break;
-			}
-			if (response.status === 200) {
-				dispatch(action);
-			} else {
-				dispatch({
-					type: 'displayItemMessage',
-					payload: {
-						itemType,
-						id,
-						message: 'sorry, API had an error',
-					},
-				});
-			}
-		} catch (e) {
-			console.log(e);
+		switch (action.type) {
+			case 'deleteItem':
+				response = await axios.delete(
+					`${api_base_url}/${itemType}/${id}`
+				);
+				break;
+			case 'saveItemEditing':
+				response = await axios.put(
+					`${api_base_url}/${itemType}/${id}`,item
+				);
+				break;
+		}
+		if (response.status === 200) {
+			dispatch(action);
+		} else {
 			dispatch({
 				type: 'displayItemMessage',
 				payload: {
 					itemType,
 					id,
-					message: 'API IS NOT AVAILABLE, try again',
+					message: `error: api response = ${response.status}`,
 				},
 			});
 		}

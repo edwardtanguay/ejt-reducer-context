@@ -19,28 +19,16 @@
       "plural": "die Workshops"
     },
     {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
+      "article": "aaa",
+      "singular": "sss",
+      "plural": "ppp",
       "id": 4
     },
     {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
+      "article": "aaa",
+      "singular": "sss",
+      "plural": "ppp",
       "id": 5
-    },
-    {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 6
-    },
-    {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 7
     },
     {
       "article": "nnn",
@@ -55,16 +43,28 @@
       "id": 9
     },
     {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
+      "article": "nnn10",
+      "singular": "nnn1010",
+      "plural": "nnnn101010",
       "id": 10
     },
     {
-      "article": "nnn",
+      "article": "nnn2222",
       "singular": "nnn",
       "plural": "nnn",
-      "id": 11
+      "id": 11,
+      "isEditing": true,
+      "isDeleting": false,
+      "message": "Edit this item.",
+      "originalItem": {
+        "article": "nnn",
+        "singular": "nnn",
+        "plural": "nnn",
+        "id": 11,
+        "isEditing": false,
+        "isDeleting": false,
+        "message": "Manage options:"
+      }
     },
     {
       "article": "nnn",
