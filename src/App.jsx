@@ -1,6 +1,7 @@
 import './App.scss';
 import { useContext } from 'react';
 import { AppContext } from './AppContext';
+import { AddItemBox } from './components/AddItemBox';
 
 function App() {
 	const { state, dispatch, actionManager } = useContext(AppContext);
@@ -10,7 +11,7 @@ function App() {
 			top: 0,
 			behavior: 'smooth',
 		});
-		dispatch({type: 'beginAddingItem'})
+		dispatch({ type: 'beginAddingItem' });
 	};
 	return (
 		<div className="App">
@@ -36,11 +37,9 @@ function App() {
 					</div>
 
 					<h2>Items from API</h2>
-					{state.isAdding === true && (
-						<div className="addItem">this will add an item</div>
-					)}
 
 					<div className="germanNounArea">
+						<AddItemBox />
 						{state.germanNouns.map((item, i) => {
 							return (
 								<fieldset className="germanNoun" key={i}>

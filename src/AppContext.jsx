@@ -15,7 +15,8 @@ const initialState = {
 		singular: 'ss',
 		plural: 'pp',
 	},
-	isAdding: false
+	isAdding: false,
+	addMessage: ''
 };
 
 function reducer(state, action) {
@@ -97,10 +98,13 @@ function reducer(state, action) {
 			item.isDeleting = false;
 			item.isEditing = false;
 			break;
-
 		case 'beginAddingItem':
 			_state.isAdding = true;
-			console.log('begin');
+			_state.addMessage = 'Click Save to add the item:'
+			break;
+		case 'clearAddingItem':
+			_state.isAdding = false;
+			_state.addMessage = ''
 			break;
 	}
 	return _state;
