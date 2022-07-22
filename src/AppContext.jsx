@@ -176,6 +176,7 @@ export const AppProvider = ({ children }) => {
 					item
 				);
 				action.payload.item = response.data;
+				action.payload.item.originalItem = { ...item };
 				break;
 		}
 		if ([200, 201].includes(response.status)) {
