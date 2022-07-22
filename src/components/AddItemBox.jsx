@@ -76,8 +76,31 @@ export const AddItemBox = () => {
 					<div className="buttonRow">
 						<div className="message">{state.addMessage}</div>
 						<div className="buttonArea">
-							<button onClick={() => dispatch({type: 'clearAddingItem'})}>Clear</button>
-							<button>Save</button>
+							<button
+								onClick={() =>
+									dispatch({ type: 'clearAddingItem' })
+								}
+							>
+								Clear
+							</button>
+							<button
+								onClick={(e) =>
+									actionManager({
+										type: 'saveItemAdding',
+										payload: {
+											itemType: 'germanNouns',
+											id: item.id,
+											item: {
+												article: item.article,
+												singular: item.singular,
+												plural: item.plural,
+											},
+										},
+									})
+								}
+							>
+								Save
+							</button>
 						</div>
 					</div>
 				</fieldset>

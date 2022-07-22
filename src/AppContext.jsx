@@ -11,9 +11,9 @@ const initialState = {
 	count: 0,
 	germanNouns: [],
 	addItem: {
-		article: 'aa',
-		singular: 'ssj',
-		plural: 'app',
+		article: '',
+		singular: '',
+		plural: '',
 	},
 	isAdding: false,
 	addMessage: '',
@@ -98,13 +98,10 @@ function reducer(state, action) {
 			item.isDeleting = false;
 			item.isEditing = false;
 			break;
-		//add
 		case 'beginAddingItem':
 			_state.isAdding = true;
 			_state.addMessage = 'Click Save to add the item:';
 			break;
-
-		//add
 		case 'clearAddingItem':
 			_state.isAdding = false;
 			_state.addMessage = '';
@@ -114,14 +111,25 @@ function reducer(state, action) {
 				plural: '',
 			};
 			break;
-
-		//add
 		case 'changeAddItemProperty':
 			itemType = action.payload.itemType;
 			property = action.payload.property;
 			id = action.payload.id;
 			value = action.payload.value;
 			_state.addItem[property] = value;
+			break;
+		case 'saveItemAdding':
+			item = action.payload.item;
+			console.log(item);
+			_state.isAdding = false;
+			_state.addMessage = '';
+			_state.germanNouns.push(item);
+			console.log(_state.germanNouns);
+			_state.addItem = {
+				article: '',
+				singular: '',
+				plural: '',
+			};
 			break;
 	}
 	return _state;
@@ -162,8 +170,15 @@ export const AppProvider = ({ children }) => {
 					item
 				);
 				break;
+			case 'saveItemAdding':
+				response = await axios.post(
+					`${api_base_url}/${itemType}`,
+					item
+				);
+				action.payload.item = response.data;
+				break;
 		}
-		if (response.status === 200) {
+		if ([200, 201].includes(response.status)) {
 			dispatch(action);
 		} else {
 			dispatch({

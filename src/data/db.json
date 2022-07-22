@@ -19,52 +19,28 @@
       "plural": "die Workshops"
     },
     {
-      "article": "aaa",
-      "singular": "sss",
-      "plural": "ppp",
+      "article": "888",
+      "singular": "888",
+      "plural": "888",
       "id": 4
     },
     {
-      "article": "aaa",
-      "singular": "sss",
-      "plural": "ppp",
+      "article": "999",
+      "singular": "999",
+      "plural": "999",
       "id": 5
     },
     {
-      "article": "nnn1",
-      "singular": "nnn2",
-      "plural": "nnn3",
-      "id": 8
+      "article": "000",
+      "singular": "000",
+      "plural": "000",
+      "id": 6
     },
     {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 9
-    },
-    {
-      "article": "nnn10",
-      "singular": "nnn1010",
-      "plural": "nnnn101010",
-      "id": 10
-    },
-    {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 12
-    },
-    {
-      "article": "nnn",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 13
-    },
-    {
-      "article": "nnn222111444",
-      "singular": "nnn",
-      "plural": "nnn",
-      "id": 14
+      "article": "22",
+      "singular": "22",
+      "plural": "22",
+      "id": 7
     }
   ]
 }
